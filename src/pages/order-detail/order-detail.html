@@ -1,0 +1,50 @@
+<!--
+  Generated template for the OrderDetail page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title><h1>Order Detail</h1></ion-title>
+    <ion-buttons right>
+      <button ion-button (click)="changeOrderStatus()">
+        <ion-icon name="build"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+
+<ion-content>
+
+
+  <div *ngIf="orderDetail">
+    <section class="order-confirmation">
+      <list-item [type]="'order'" *ngFor="let order of orderDetail.orders">
+        <div content-1>{{order.quantity}}x</div>
+        <div content-2>{{order.menu_name}}</div>
+      </list-item>
+    </section>
+
+    <section padding>
+        <h4 class="text-ultra-light">Remarks:</h4>
+          <p *ngFor="let preference of orderDetail.preferences ">{{preference}}</p>
+    </section>
+
+    <section padding>
+        <h4 class="text-ultra-light">Details:</h4>
+          <p>{{orderDetail.due_datetime}}</p>
+          <p>{{orderDetail.kitchen_name}}</p>
+          <p>Input By {{orderDetail.ordered_by_firstname}}</p>
+    </section>
+  </div>  
+
+
+</ion-content>
+
+

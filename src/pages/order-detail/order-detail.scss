@@ -1,0 +1,21 @@
+page-order-detail {
+    ion-content {
+
+        .order-confirmation {
+            border-top: 1px solid white;
+						border-left: 1px solid white;
+						border-right: 1px solid white;
+        }
+
+        .order-confirmation__orders {
+            border-bottom: 1px solid white;
+        }
+
+        .order-confirmation__remarks {
+            padding: 35px 20px;
+        }
+
+
+    }
+
+}

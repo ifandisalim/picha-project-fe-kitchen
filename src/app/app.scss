@@ -1,0 +1,91 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+
+
+/***
+* Import Global Utility Styles
+*/
+@import '../styles/base/base.scss';
+
+@import '../styles/utilities/responsive-padding.scss';
+@import '../styles/utilities/responsive-margin.scss';
+@import '../styles/utilities/font-sizes.scss';
+@import '../styles/utilities/utilities.scss';
+
+@import '../styles/modules/fonts.scss';
+@import '../styles/modules/forms.scss';
+@import '../styles/modules/toolbar.scss';
+@import '../styles/modules/notification.scss';
+@import '../styles/modules/list.scss';
+
+/***
+* Import Global Styles
+*/
+
+
+
+
+ion-header{
+    .toolbar-content h1{
+        font-family: 'Avenir Next Ultra Light';
+    }
+}
+
+body{
+    .content{
+        color: white;
+        font-family: 'Avenir Next';
+        font-size: 1.3rem;
+    }
+
+    ion-tabs{
+        .tab-button{
+            .tab-button-text{
+                text-transform: uppercase;
+                font-family: 'Avenir Next Ultra Light';
+                font-size: 1.3rem;
+                letter-spacing: 1px;
+            }
+        }
+
+        ion-badge.tab-badge{
+                border-radius: 0px;
+                font-size: 12px;
+                line-height: 12px;
+                padding: 1px 4px;
+                top: 9%;
+            }
+        
+        .has-icon .tab-badge{
+            right: calc(50% - 22px);
+        }
+    }
+
+ 
+}
+
+ion-content{
+    background-position: center;
+    background-size: cover;
+    background-image: url('../assets/images/BG-CUP-DARK-BLUR.jpg');
+    background-repeat: no-repeat;
+    background-color: #181818;
+}
+
+
+

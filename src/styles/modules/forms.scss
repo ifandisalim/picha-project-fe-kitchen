@@ -1,0 +1,33 @@
+
+/***
+* Button Styles
+*/
+.pp{
+    &-btn{
+        border-radius: 0;
+        height: 2.3em;
+        text-transform: uppercase;
+    }
+
+    &-btn--dark{
+        background-color: rgba(30, 30, 28, 0.6);
+        border: solid 1px #DCB685;
+        color: #DCB685;
+    }
+
+
+}
+
+
+/***
+* Input Styles
+*/
+.pp{
+    &-input{
+        background-color: rgba(60, 59, 54, 0.8);
+        color: white;
+        margin-bottom:8px;
+        border-bottom: none;
+    }
+}
+

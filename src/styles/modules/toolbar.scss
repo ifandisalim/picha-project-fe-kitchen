@@ -1,0 +1,11 @@
+.toolbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 10px;
+    color: #525252;
+}
+
+.header-ios .toolbar-background-ios{
+    border: none;
+}

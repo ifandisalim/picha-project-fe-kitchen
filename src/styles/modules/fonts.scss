@@ -1,0 +1,43 @@
+/***
+* Font Imports
+*/
+@font-face {
+    font-family: "Avenir Next";
+    src: url('../assets/fonts/AvenirNextLTPro-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Avenir Next Ultra Light';
+    src: url('../assets/fonts/AvenirNextLTPro-UltLtCn.otf');
+}
+
+@font-face {
+    font-family: 'Avenir Next Regular';
+    src: url('../assets/fonts/AvenirNextLTPro-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Avenir Next Bold';
+    src: url('../assets/fonts/AvenirNextLTPro-Bold.otf');
+}
+
+
+.text-ultra-light{
+  font-family: 'Avenir Next Ultra Light';
+}
+
+.text-normal{
+  font-family: 'Avenir Next';
+}
+
+.text-bold{
+  font-family: 'Avenir Next Bold';
+}
+
+.text-regular{
+  font-family: 'Avenir Next Regular';
+}
+
+.text-spaced{
+    letter-spacing: 1px;
+}

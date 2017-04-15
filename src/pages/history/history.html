@@ -1,0 +1,30 @@
+<!--
+  Generated template for the History page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title><h1>ORDER HISTORY</h1></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <list-item [type]="'slim'">
+    <div content-1>1 mar 2017</div>
+  </list-item>
+
+  <list-item [type]="'status'" (click)="viewOrder()">
+    <div content-1>2:15PM-garrick J</div>
+    <div content-3>pending acceptance</div>
+  </list-item>
+
+  <list-item [type]="'order'">
+    <div content-1>1x</div>
+    <div content-2>flavourted basmati rice with roasted chicken</div>
+    <div content-3>rm20</div>
+  </list-item>
+</ion-content>

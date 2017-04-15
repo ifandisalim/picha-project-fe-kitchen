@@ -1,0 +1,22 @@
+<!--
+  Generated template for the ListItem component.
+
+  See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
+  for more info on Angular 2 Components.
+-->
+
+<div class="list-item" 
+    [class.list-item--order]="type === 'order'"
+    [class.list-item--slim]="type === 'slim'" 
+    [class.list-item--status]="type === 'status'"
+    (click)="onItemClick()">
+  <div class="list-item__content">
+    <ng-content select="[content-1]"></ng-content>
+  </div>
+  <div class="list-item__content">
+    <ng-content select="[content-2]"></ng-content>
+  </div>
+  <div class="list-item__content">
+    <ng-content select="[content-3]"></ng-content>
+  </div>
+</div>

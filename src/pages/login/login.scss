@@ -1,0 +1,50 @@
+page-login {
+    ion-content{
+        background-position: center;
+        background-size: cover;
+        background-image: url('../assets/images/BG-BOWL-BLACK-BLUR.jpg');
+        background-repeat: no-repeat;
+    }
+
+
+    ion-title.title{
+        padding: 0;
+    }
+
+    ion-title .toolbar-title{
+        font-size: 1.55rem;
+    }
+
+    .login-content{
+        width: 85%;
+        margin: 0 auto;
+    }
+
+    /***
+    * input feedback styles for android
+    * controls border bottom colours of the input boxes
+    */
+    ion-list.list-md .item-input:last-child{
+        border-bottom: none;
+    }
+
+    ion-list.list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child{
+        border-bottom: none;
+    }
+
+    ion-list.list-md .item-input.ng-valid.input-has-value:not(.input-has-focus){
+        border-bottom-color: #32db64;
+        box-shadow: inset 0 -1px 0 0 #32db64;
+    }
+
+    ion-list.list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus){
+        border-bottom-color: #f53d3d;
+        box-shadow: inset 0 -1px 0 0 #f53d3d;
+    }
+
+    ion-list.list-md .item-input.input-has-focus{
+        border-bottom-color: #dcb685;
+        box-shadow: inset 0 -1px 0 0 #dcb685;
+    }
+
+}

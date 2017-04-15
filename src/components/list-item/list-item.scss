@@ -1,0 +1,49 @@
+list-item {
+	.list-item{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		color: white;
+		text-transform: uppercase;
+		font-size: 1.1rem;
+		min-height: 35px;
+		border-bottom: 1px solid white;
+		background-color: #000;
+	}
+
+	.list-item__content{
+		padding: 10px;
+	}
+
+	.list-item__content:nth-child(2){
+		font-size:1.25rem;
+		flex-grow: 1;
+		
+	}
+
+	.list-item--order{
+		.list-item__content:first-child{
+			color: #DCB685;
+		}
+	}
+
+	.list-item--slim{
+		background-color: #575757;
+		font-size: 1rem;
+		min-height: 0px;
+		max-height: 25px;
+		border-bottom: none;
+	}
+
+	.list-item--status{
+		background-color: #343233;
+		border-bottom: none;
+
+		.list-item__content:first-child{
+			font-size: 1.3rem;
+		}
+
+	}
+
+}
