@@ -64,6 +64,14 @@ export class OrdersPage {
         this.remainingOrderCount =  this.remainingOrders.length;
 
       }, err => {
+
+        let errBody = JSON.parse(err._body);
+        if(errBody.error.daoErrMessage === 'No order found'){
+          this.hasOrders = false;
+          return;
+        }
+
+
         let failedToast = this.utilities.createToast('Failed getting remaining orders. Check internet connection');
         failedToast.present();
       });
