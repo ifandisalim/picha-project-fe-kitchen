@@ -77,7 +77,6 @@ export class OrdersPage {
 
           if(err._body.type === "error"){
             this.hasInternet = false;
-            console.log('entered');
             return;
           }
 
