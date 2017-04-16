@@ -1,6 +1,6 @@
 import { AccountManager } from './../../providers/account-manager';
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ViewController, ToastController } from 'ionic-angular';
 
 /*
 	Generated class for the ForgotPasswordModal page.
@@ -23,7 +23,8 @@ export class ForgotPasswordModalPage {
 		private navParams: NavParams,
 		private accountMngr: AccountManager,
 		private alertCtrl: AlertController,
-		private viewCtrl: ViewController) { }
+		private viewCtrl: ViewController,
+		private toastCtrl: ToastController) { }
 
 
 	/**
@@ -36,6 +37,17 @@ export class ForgotPasswordModalPage {
 				this.retrievedUserId = res.user_id;
 			},
 			err => {
+
+				if(err._body.type === "error"){
+					this.toastCtrl.create({
+						message: 'No internet connection',
+						duration: 2500,
+						position: 'bottom'
+					}).present();
+
+					return;
+				}
+
 				let errorBody = JSON.parse(err._body);
 				if (errorBody.error.daoErrMessage === "No username found") {
 					this.userNotFound = true;
@@ -78,6 +90,16 @@ export class ForgotPasswordModalPage {
 				});
 				alert.present();
 			}, err => {
+				if(err._body.type === "error"){
+					this.toastCtrl.create({
+						message: 'No internet connection',
+						duration: 2500,
+						position: 'bottom'
+					}).present();
+
+					return;
+				}
+				
 				let alert = this.alertCtrl.create({
 					title: 'Failed Resetting Password',
 					subTitle: 'Please contact developer',

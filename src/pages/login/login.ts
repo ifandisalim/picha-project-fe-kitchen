@@ -95,18 +95,34 @@ export class LoginPage {
         this.isLoggingIn = false;
         this.isSubmitError = true;
 
-        const errObj = JSON.parse(err._body);
-        console.log(errObj);
-
-        if (errObj.errMessage.toLowerCase() === 'wrong password') {
-          this.submitErrorMsg = 'Wrong password.';
-          return;
-        }
 
 
-        if (errObj.error.daoErrMessage.toLowerCase() === 'no user found') {
-          this.submitErrorMsg = 'No user with that username.';
-          return;
+        if(err._body){
+
+          if(err._body.type === "error"){
+            this.toastCtrl.create({
+              message: 'Login failed. No internet connection',
+              duration: 2500,
+              position: 'bottom'
+            }).present();
+
+            return;
+          }
+
+          let errBody = JSON.parse(err._body);
+
+          if (errBody.errMessage.toLowerCase() === 'wrong password') {
+            this.submitErrorMsg = 'Wrong password.';
+            return;
+          }
+
+
+          if (errBody.error.daoErrMessage.toLowerCase() === 'no user found') {
+            this.submitErrorMsg = 'No user with that username.';
+            return;
+          }
+
+
         }
 
       });
