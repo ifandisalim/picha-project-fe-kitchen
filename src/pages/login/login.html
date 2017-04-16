@@ -41,12 +41,7 @@
         <ion-spinner *ngIf="isLoggingIn" name="crescent" color="light" text-center></ion-spinner>
     </div>
 
-    <div class="center-hv fill-viewport absolute-top-left"
-         [class.z-index-behind] = "!isLoggingIn" >
-        <h1 class="text-ultra-light" *ngIf="isLoggingIn">No internet connection.</h1>
-    </div>
-
-    <ion-footer>
+    <ion-footer> 
         <ion-toolbar color="primary" *ngIf="!keyboardShown">
             <ion-title class="text-regular text-spaced" text-center (click)="forgotPassword()">FORGOT PASSWORD</ion-title>
         </ion-toolbar>
