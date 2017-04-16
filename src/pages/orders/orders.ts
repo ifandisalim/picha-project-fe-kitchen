@@ -25,6 +25,8 @@ export class OrdersPage {
   hasOrders: boolean = true;
   remainingOrders = null;
   remainingOrderCount: number = 0;
+  isLoading: boolean = true;
+  hasInternet: boolean = true;
 
 
   constructor(private navCtrl: NavController, 
@@ -41,6 +43,8 @@ export class OrdersPage {
    ionViewWillEnter(){
      this.orderMngr.getRemainingOrders(this.accountManager.kitchenId, 0)
       .subscribe(res => {
+        this.isLoading = false;
+        this.hasInternet = true;
 
         let formattedOrderHistory = res.order_history.map(order => {
             order.due_date =  this.utilities.getDateFromDateTime(order.due_datetime);
@@ -64,12 +68,27 @@ export class OrdersPage {
         this.remainingOrderCount =  this.remainingOrders.length;
 
       }, err => {
+        this.isLoading = false;
+        this.hasInternet = true;
 
-        let errBody = JSON.parse(err._body);
-        if(errBody.error.daoErrMessage === 'No order found'){
-          this.hasOrders = false;
-          return;
+
+        
+        if(err._body){
+
+          if(err._body.type === "error"){
+            this.hasInternet = false;
+            console.log('entered');
+            return;
+          }
+
+          let errBody = JSON.parse(err._body);
+          if(errBody.error.daoErrMessage === 'No order found'){
+            this.hasOrders = false;
+            return;
+          }
+
         }
+
 
 
         let failedToast = this.utilities.createToast('Failed getting remaining orders. Check internet connection');

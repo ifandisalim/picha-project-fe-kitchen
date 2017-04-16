@@ -26,6 +26,8 @@ export class NewOrdersPage {
   hasOrders:boolean = true;
   newOrders = null;
   newOrdersCount: number = 0;
+  isLoading: boolean = true;
+  hasInternet: boolean = true;
 
   statusInputs: AlertInputOptions[] = null;
   changedStatus: string = null;
@@ -55,12 +57,21 @@ export class NewOrdersPage {
    */
 		this.push.rx.notification()
 			.subscribe((message) => {
+        this.isLoading = true;
+        this.hasInternet = true;
+
 				if(message.title === 'New Order'){
           this.orderMngr.getNewOrders()
             .subscribe(res => {
+              this.isLoading = false;
+              this.hasInternet = true;
+
+
               let formattedOrderHistory = res.order_history.map(order => {
                   order.due_date =  this.utilities.getDateFromDateTime(order.due_datetime);
                   order.due_time = this.utilities.getTimeFromDateTime(order.due_datetime);
+
+                  // this.isLoading = false;
 
                   return order;
               });
@@ -73,10 +84,22 @@ export class NewOrdersPage {
               this.updateNewOrdersCount(updatedNewOrdersCount);
 
             }, err => {
-              let errBody = JSON.parse(err._body);
-              if(errBody.error.daoErrMessage === 'No order found'){
-                this.hasOrders = false;
-                return;
+              this.isLoading = false;
+              this.hasInternet = true;
+
+              if(err._body){
+
+                if(err._body.type === "error"){
+                  this.hasInternet = false;
+                  return;
+                }
+
+                let errBody = JSON.parse(err._body);
+                if(errBody.error.daoErrMessage === 'No order found'){
+                  this.hasOrders = false;
+                  return;
+                }
+
               }
 
               let failedToast = this.utilities.createToast('Failed retrieving new orders details. Check internet connection.');
@@ -93,6 +116,10 @@ export class NewOrdersPage {
 
     this.orderMngr.getNewOrders()
       .subscribe(res => {
+
+        this.isLoading = false;
+        this.hasInternet = true;
+
         let formattedOrderHistory = res.order_history.map(order => {
             order.due_date =  this.utilities.getDateFromDateTime(order.due_datetime);
             order.due_time = this.utilities.getTimeFromDateTime(order.due_datetime);
@@ -108,10 +135,22 @@ export class NewOrdersPage {
         this.updateNewOrdersCount(updatedNewOrdersCount);
 
       }, err => {
-        let errBody = JSON.parse(err._body);
-        if(errBody.error.daoErrMessage === 'No order found'){
-          this.hasOrders = false;
-          return;
+        this.isLoading = false;
+        this.hasInternet = true;
+
+        if(err._body){
+
+          if(err._body.type === "error"){
+            this.hasInternet = false;
+            return;
+          }
+
+          let errBody = JSON.parse(err._body);
+          if(errBody.error.daoErrMessage === 'No order found'){
+            this.hasOrders = false;
+            return;
+          }
+
         }
 
         let failedToast = this.utilities.createToast('Failed retrieving new orders details. Check internet connection.');
@@ -180,6 +219,7 @@ export class NewOrdersPage {
 
             this.orderMngr.updateOrderStatus(selectedOrder[0], this.changedStatus, this.rejectReason)
               .subscribe(res => {
+                
                 this.newOrders = this.removeOrderFromArray(selectedOrderId, this.newOrders);
                 let updatedNewOrdersCount = this.newOrders.length;
                 this.updateNewOrdersCount(updatedNewOrdersCount);
