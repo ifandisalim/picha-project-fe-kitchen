@@ -45,8 +45,6 @@ export class OrderManager {
    }
 
    updateOrderStatus(order, status: string, rejectedReason: string){
-     console.log('order in updateorder status');
-     console.log(order);
       return this.http.post(`${EP_HOST}/order/update_status`, {
         order: order,
         kitchen_id: this.kitchenId,

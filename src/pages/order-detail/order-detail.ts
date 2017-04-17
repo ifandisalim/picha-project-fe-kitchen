@@ -18,7 +18,7 @@ import { NavController, NavParams, AlertController, Alert, AlertInputOptions} fr
 })
 export class OrderDetailPage {
 
-  orderId: number = null;
+  order = null;
   orderDetail = null;
   changeStatusAlert: Alert = null;
   orderStatuses: string[] = ['IN PROGRESS', 'COMPLETED', 'PICKED UP'];
@@ -37,9 +37,9 @@ export class OrderDetailPage {
    */
   ionViewWillLoad(){
 
-    this.orderId = this.navParams.get('orderId');
+    this.order = this.navParams.get('order');
 
-    this.orderMngr.getOrderDetail(this.orderId)
+    this.orderMngr.getOrderDetail(this.order.order_id)
       .subscribe(res => {
 
         this.orderDetail = res.order;
@@ -77,13 +77,13 @@ export class OrderDetailPage {
                 return false;
               }
 
-              this.orderMngr.updateOrderStatus(this.orderId, status, null)
+              this.orderMngr.updateOrderStatus(this.order, status, null)
                 .subscribe(res => {
                   this.ngRedux.dispatch({
                     type: actionsConst.UPDATE_REMAINING_ORDERS_STATUS,
                     payload: {
                       newOrderStatus: status,
-                      orderId: this.orderId
+                      orderId: this.order.order_id
                     }
                   });
 

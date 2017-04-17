@@ -24,7 +24,6 @@ export class ListItemComponent {
    */
 
   onItemClick(){
-    console.log('Orderid from list-item', this.orderId);
     this.itemClick.emit({orderId: this.orderId});
   }
 }

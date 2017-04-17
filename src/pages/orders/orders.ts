@@ -103,7 +103,8 @@ export class OrdersPage {
    * Component Methods
    */
   viewOrder(data){
-    this.navCtrl.push(OrderDetailPage, {orderId: data.orderId});
+    let orderDetail = this.remainingOrders.filter(order => order.order_id === data.orderId);
+    this.navCtrl.push(OrderDetailPage, {order: orderDetail[0]});
   }
 
 
