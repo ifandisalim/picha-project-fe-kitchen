@@ -41,20 +41,23 @@ export class Utilities {
 
     getCurrentDateTime(){
         let currentDateTime = moment();
-        return currentDateTime.format('YYYY-MM-DD hh:mm');
+        return currentDateTime.format('YYYY-MM-DD HH:mm');
     }
 
     formatISOtoDateTime(date: string){
-        return moment(date).format('YYYY-MM-DD hh:mm');
+        // Subtract 8 hours because ionic adds 8 hours due to malaysia time 
+        return moment(date).subtract(8, 'hour').format('YYYY-MM-DD HH:mm');
     }
 
 
     getDateFromDateTime(date: string){
-        return moment(date).format('D MMM YYYY');
+        // Subtract 8 hours because ionic adds 8 hours due to malaysia time 
+        return moment(date).subtract(8, 'hour').format('D MMM YYYY');
     }
 
     getTimeFromDateTime(date: string){
-        return moment(date).format('h:mm A');
+        // Subtract 8 hours because ionic adds 8 hours due to malaysia time 
+        return moment(date).subtract(8, 'hour').format('h:mm A');
     }
 
 

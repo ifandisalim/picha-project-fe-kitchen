@@ -51,6 +51,7 @@ export class NewOrdersPage {
    */
 
   ionViewWillEnter(){
+    this.hasOrders = true;
 
   /**
    * If notification of new order comes, get new order again from BE

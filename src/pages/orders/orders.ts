@@ -41,6 +41,8 @@ export class OrdersPage {
    * Component Callbacks
    */
    ionViewWillEnter(){
+     this.hasOrders = true;
+     
      this.orderMngr.getRemainingOrders(this.accountManager.kitchenId, 0)
       .subscribe(res => {
         this.isLoading = false;
