@@ -51,13 +51,12 @@ export class Utilities {
 
 
     getDateFromDateTime(date: string){
-        // Subtract 8 hours because ionic adds 8 hours due to malaysia time 
-        return moment(date).subtract(8, 'hour').format('D MMM YYYY');
+        return moment(date).format('D MMM YYYY');
     }
 
     getTimeFromDateTime(date: string){
         // Subtract 8 hours because ionic adds 8 hours due to malaysia time 
-        return moment(date).subtract(8, 'hour').format('h:mm A');
+        return moment(date).format('h:mm A');
     }
 
 
