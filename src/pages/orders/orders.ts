@@ -42,6 +42,8 @@ export class OrdersPage {
    */
    ionViewWillEnter(){
      this.hasOrders = true;
+     this.remainingOrders = null;
+     this.remainingOrderCount = 0;
      
      this.orderMngr.getRemainingOrders(this.accountManager.kitchenId, 0)
       .subscribe(res => {
@@ -55,17 +57,7 @@ export class OrdersPage {
             return order;
         });
 
-        this.ngRedux.dispatch({
-          type: actionConst.RETRIEVED_REMAINING_ORDERS,
-          payload: {
-            remainingOrders: formattedOrderHistory
-          }
-        });
-
-        this.ngRedux.select(state => state.orderDetails)
-          .subscribe(orderDetails => {
-            this.remainingOrders = orderDetails.remainingOrders
-          });
+        this.remainingOrders = formattedOrderHistory;
         
         this.remainingOrderCount =  this.remainingOrders.length;
 
