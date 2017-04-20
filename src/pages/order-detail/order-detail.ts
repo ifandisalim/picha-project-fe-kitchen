@@ -43,7 +43,8 @@ export class OrderDetailPage {
       .subscribe(res => {
 
         this.orderDetail = res.order;
-        this.orderDetail.due_datetime =  this.utilities.formatISOtoDateTime(this.orderDetail.due_datetime);
+        // this.orderDetail.due_datetime =  this.utilities.formatISOtoDateTime(this.orderDetail.due_datetime);
+        this.orderDetail.due_datetime =  this.orderDetail.due_datetime;
       }, err => {
         let failedToast = this.utilities.createToast('Failed getting order detail. Check internet connection');
         failedToast.present();

@@ -20,3 +20,9 @@
   </ion-list>
 
 </ion-content>
+
+    <div class="center-hv fill-viewport absolute-top-left"
+         [class.z-index-behind] = "!isLoading"
+         [class.z-index-front] = "isLoading"  >
+        <ion-spinner *ngIf="isLoading" name="crescent" color="light" text-center></ion-spinner>
+    </div>

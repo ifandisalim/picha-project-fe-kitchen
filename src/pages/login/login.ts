@@ -101,7 +101,7 @@ export class LoginPage {
 
           if(err._body.type === "error"){
             this.toastCtrl.create({
-              message: 'Login failed. No internet connection',
+              message: 'Login failed. No internet connection / Server error',
               duration: 2500,
               position: 'bottom'
             }).present();

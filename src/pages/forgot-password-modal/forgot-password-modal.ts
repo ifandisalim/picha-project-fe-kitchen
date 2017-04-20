@@ -32,7 +32,8 @@ export class ForgotPasswordModalPage {
 	 */
 
 	retrieveUserId() {
-		this.accountMngr.retrieveUserIdByUserName(this.enteredUserName)
+		let userNamelowercase = this.enteredUserName.toLocaleLowerCase();
+		this.accountMngr.retrieveUserIdByUserName(userNamelowercase)
 			.subscribe(res => {
 				this.retrievedUserId = res.user_id;
 			},
@@ -40,7 +41,7 @@ export class ForgotPasswordModalPage {
 
 				if(err._body.type === "error"){
 					this.toastCtrl.create({
-						message: 'No internet connection',
+						message: 'No internet connection / Server error',
 						duration: 2500,
 						position: 'bottom'
 					}).present();
@@ -92,7 +93,7 @@ export class ForgotPasswordModalPage {
 			}, err => {
 				if(err._body.type === "error"){
 					this.toastCtrl.create({
-						message: 'No internet connection',
+						message: 'No internet connection / Server error',
 						duration: 2500,
 						position: 'bottom'
 					}).present();

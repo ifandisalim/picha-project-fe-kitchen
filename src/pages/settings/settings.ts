@@ -20,6 +20,8 @@ import { NavController, NavParams, App, ToastController } from 'ionic-angular';
 })
 export class SettingsPage {
 
+  isLoading: boolean;
+
   constructor(private navCtrl: NavController, 
   private navParams: NavParams,
   private ngRedux: NgRedux<IAppState>,
@@ -27,14 +29,23 @@ export class SettingsPage {
   private app: App,
   private accountMngr: AccountManager,
   private push: Push,
-  private toastCtrl: ToastController) { }
+  private toastCtrl: ToastController) { 
+
+
+  }
 
   /**
    * Component Methods
    */
 
+   ionViewWillLoad(){
+       this.isLoading = false;
+   }
+
   
     logOut(){
+        this.isLoading = true;
+
         this.push.unregister().then(() => {
             this.ngRedux.dispatch({
                 type: actionConst.LOGOUT
@@ -42,10 +53,12 @@ export class SettingsPage {
 
             this.storage.clear()
                 .then(() => {
+                  this.isLoading = false;
                   this.app.getRootNav().setRoot(LoginPage);
                 });
         })
         .catch(err => {
+            this.isLoading = false;
             this.toastCtrl.create({
                 message: 'Trouble logging out. Unable to unregister push notification',
                 position: 'bottom',
