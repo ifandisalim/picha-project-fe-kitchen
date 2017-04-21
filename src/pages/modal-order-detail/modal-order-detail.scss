@@ -1,0 +1,34 @@
+ page-modal-order-detail {
+    ion-content {
+        background-position: center;
+        background-size: cover;
+        background-image: url('../assets/images/BG-CUP-DARK-BLUR.jpg');
+        background-repeat: no-repeat;
+        background-color: #181818;
+
+        h4{
+            margin-left: 16px;
+        }
+
+        .scroll-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .order-confirmation {
+            flex-grow: 1;
+            border: 1px solid white;
+        }
+
+        .order-confirmation__orders {
+            border-bottom: 1px solid white;
+        }
+
+        .order-confirmation__remarks {
+            padding: 35px 20px;
+        }
+
+    }
+
+}

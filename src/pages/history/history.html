@@ -13,18 +13,26 @@
 </ion-header>
 
 <ion-content>
-  <list-item [type]="'slim'">
-    <div content-1>1 mar 2017</div>
-  </list-item>
 
-  <list-item [type]="'status'" (click)="viewOrder()">
-    <div content-1>2:15PM-garrick J</div>
-    <div content-3>pending acceptance</div>
-  </list-item>
+  <div class="margin-bottom-xl" *ngFor="let order of orderHistories | orderByPipe" >
+    <list-item [type]="'slim'">
+      <div content-1>{{order.due_date}}</div>
+    </list-item>
 
-  <list-item [type]="'order'">
-    <div content-1>1x</div>
-    <div content-2>flavourted basmati rice with roasted chicken</div>
-    <div content-3>rm20</div>
-  </list-item>
+    <list-item [type]="'status'" (click)="viewOrder(order.order_id)">
+      <div content-1>{{order.due_time + ' - ' +order.kitchen_name}}</div>
+      <div content-3>{{order.status}}</div>
+    </list-item>
+
+    <list-item [type]="'order'" *ngFor="let item of order.orders" >
+      <div content-1>{{item.quantity}}x</div>
+      <div content-2>{{item.menu_name}}</div>
+      <div content-3></div>
+    </list-item>
+  </div>
+
+  <ion-infinite-scroll (ionInfinite)="loadMoreOrder($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>

@@ -64,4 +64,10 @@ export class OrderManager {
       .map(res => res.json());
    }
 
+   getCompletedOrderHistory(kitchenId:number, offset:number){
+     return this.http.get(`${EP_HOST}/order/history/completed/kt/${offset}/${kitchenId}`, this.requestHeader)
+      .map(res => res.json());
+   }
+
+
 }

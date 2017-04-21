@@ -1,0 +1,28 @@
+<!--
+  Generated template for the FeedbackSingle component.
+
+  See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
+  for more info on Angular 2 Components.
+-->
+
+
+<section class="card-feedback" (click)="onItemClicked()">
+    <div class="card-feedback__heading"
+         [class.card-feedback__heading--positive]="feedback.isPositive"
+         [class.card-feedback__heading--negative]="!feedback.isPositive">
+        {{feedbackTitle}}
+    </div>
+
+    <div class="card-feedback__content">
+        <div class="card-feedback__item">
+            <p>{{feedback.orderDate}}</p>
+            <div  class="card-feedback__comments">
+                <p class="margin-bottom-m">{{feedback.kitchenName}}</p>
+                <p *ngFor="let comment of feedback.comments" class="card-feedback__comment" >
+                    {{comment}}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+

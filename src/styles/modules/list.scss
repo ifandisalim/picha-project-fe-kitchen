@@ -11,3 +11,79 @@
 		color: white;
 	}
 }
+
+//.list-ios > .item-block:last-child
+.pitcha-list{
+    margin: -1px 0 0 0;
+
+    button{
+        background-color: #101010;
+        color: white;
+        font-size: 1.4rem;
+        border-top: solid 1px #5B5B5B;
+        border-left: solid 1px #5B5B5B;
+        border-right: solid 1px #5B5B5B;
+
+        &.item-block .item-inner{
+            border-bottom: none;
+        }
+    }
+
+
+
+    // Override ionic
+    button:last-child,
+    button.item.item-ios:last-child{
+        border-bottom: solid 1px #5B5B5B;
+    }
+
+    button.item.item-ios:first-child{
+        border-top: solid 1px #5B5B5B;
+    }
+
+
+
+}
+
+.pitcha-list--transparent{
+
+    .item{
+        color: #fff;
+        font-size: 1.4rem;
+        background-color: transparent;
+    }
+
+    .item .item-inner{
+        border-bottom:none;
+    }
+
+    .item.item-block:first-child{
+        border-top: none;
+    }
+    .item.item-block:last-child{
+        border-bottom: none;
+    }
+
+
+}
+
+.pitcha-list__item-active{
+    &:before{
+        content: '';
+        position: absolute;
+        left: 0;
+        height: 95%;
+        width: 5px;
+        border-radius: 1px;
+        background-color: #DCB685;
+    }
+
+}
+
+
+.pitcha-list--no-side-border{
+    button{
+        border-left: none;
+        border-right: none;
+    }
+}

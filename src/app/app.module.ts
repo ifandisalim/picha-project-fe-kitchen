@@ -1,3 +1,6 @@
+import { FeedbackSingleComponent } from './../components/feedback-single/feedback-single';
+import { OrderByPipe } from './../pipes/order-by-pipe';
+import { ModalOrderDetailPage } from './../pages/modal-order-detail/modal-order-detail';
 import { OrderDetailPage } from './../pages/order-detail/order-detail';
 import { ListItemComponent } from './../components/list-item/list-item';
 import { HistoryPage } from './../pages/history/history';
@@ -69,7 +72,10 @@ const cloudSettings = {
     HistoryPage,
     ForgotPasswordModalPage,
     OrderDetailPage,
-    ListItemComponent
+    ListItemComponent,
+    ModalOrderDetailPage,
+    OrderByPipe,
+    FeedbackSingleComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -91,7 +97,8 @@ const cloudSettings = {
     OrdersPage,
     HistoryPage,
     ForgotPasswordModalPage,
-    OrderDetailPage
+    OrderDetailPage,
+    ModalOrderDetailPage
   ],
   providers: [
     StatusBar,
