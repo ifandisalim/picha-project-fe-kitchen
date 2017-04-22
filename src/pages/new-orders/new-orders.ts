@@ -60,6 +60,7 @@ export class NewOrdersPage {
 			.subscribe((message) => {
         this.isLoading = true;
         this.hasInternet = true;
+        this.hasOrders = true;
 
 				if(message.title === 'New Order'){
           this.orderMngr.getNewOrders()
@@ -71,8 +72,6 @@ export class NewOrdersPage {
               let formattedOrderHistory = res.order_history.map(order => {
                   order.due_date =  this.utilities.getDateFromDateTime(order.due_datetime);
                   order.due_time = this.utilities.getTimeFromDateTime(order.due_datetime);
-
-                  // this.isLoading = false;
 
                   return order;
               });
