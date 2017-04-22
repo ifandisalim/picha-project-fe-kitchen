@@ -36,3 +36,15 @@
   </ion-infinite-scroll>
 
 </ion-content>
+
+    <div class="center-hv fill-viewport absolute-top-left"
+         [class.z-index-behind] = "!isLoading"
+         [class.z-index-front] = "isLoading"  >
+        <ion-spinner *ngIf="isLoading" name="crescent" color="light" text-center></ion-spinner>
+    </div>
+
+    <div class="center-hv fill-viewport absolute-top-left"
+         [class.z-index-behind] = "hasInternet"
+         [class.z-index-front] = "!hasInternet"  >
+        <h1 ion-text color="danger" *ngIf="!hasInternet" class="text-ultra-light">No internet connection / Server error.</h1>
+    </div>
