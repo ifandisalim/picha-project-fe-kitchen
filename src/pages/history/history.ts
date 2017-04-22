@@ -52,8 +52,6 @@ export class HistoryPage {
       this.isLoading = false;
       this.hasInternet = true;
 
-      console.log(res);
-
         let formattedOrderHistory = res.order_history.map(order => {
             order.due_date =  this.utilities.getDateFromDateTime(order.due_datetime);
             order.due_time = this.utilities.getTimeFromDateTime(order.due_datetime);
@@ -99,7 +97,6 @@ export class HistoryPage {
    * Component Methods
    */
     viewOrder(orderId){
-      console.log(orderId)
         this.orderMngr.getOrderDetail(orderId)
             .subscribe(res => {
                 const orderDetailModal = this.modalCtrl.create(ModalOrderDetailPage, {orderId, res});
