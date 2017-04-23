@@ -1,3 +1,4 @@
+import { AccountManager } from './../../providers/account-manager';
 import { NgRedux } from '@angular-redux/store';
 import IAppState from '../../states/IAppState';
 import actionsConst from '../../states/actionsConst';
@@ -29,6 +30,7 @@ export class OrderDetailPage {
   private navParams: NavParams, 
   private alertCtrl: AlertController,
   private orderMngr: OrderManager,
+  private accountMngr: AccountManager,
   private utilities: Utilities,
   private ngRedux: NgRedux<IAppState>) {}
 
@@ -78,7 +80,7 @@ export class OrderDetailPage {
                 return false;
               }
 
-              this.orderMngr.updateOrderStatus(this.order, status, null)
+              this.orderMngr.updateOrderStatus(this.order, status, null, this.accountMngr.kitchenId)
                 .subscribe(res => {
                   this.ngRedux.dispatch({
                     type: actionsConst.UPDATE_REMAINING_ORDERS_STATUS,

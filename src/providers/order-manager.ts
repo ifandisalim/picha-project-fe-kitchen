@@ -17,7 +17,6 @@ import 'rxjs/add/operator/map';
 export class OrderManager {
 
   newOrdersCount: number = null;
-  kitchenId: number = null;
   requestHeader: RequestOptions = null;
 
   constructor(private http: Http, 
@@ -29,7 +28,6 @@ export class OrderManager {
       this.newOrdersCount = orderDetails.newOrdersCount;
     });
 
-    this.kitchenId = this.accountMngr.kitchenId;
     this.requestHeader = this.accountMngr.headerWithAccessToken;
 
   }
@@ -39,15 +37,15 @@ export class OrderManager {
   /**
    * Provider Methods
    */
-   getNewOrders(){
-     return this.http.get(`${EP_HOST}/order/new/${this.kitchenId}`, this.requestHeader)
+   getNewOrders(kitchenId: number){
+     return this.http.get(`${EP_HOST}/order/new/${kitchenId}`, this.requestHeader)
       .map(res => res.json());
    }
 
-   updateOrderStatus(order, status: string, rejectedReason: string){
+   updateOrderStatus(order, status: string, rejectedReason: string, kitchenId: number){
       return this.http.post(`${EP_HOST}/order/update_status`, {
         order: order,
-        kitchen_id: this.kitchenId,
+        kitchen_id: kitchenId,
         status,
         rejected_reason: rejectedReason
       }, this.requestHeader)

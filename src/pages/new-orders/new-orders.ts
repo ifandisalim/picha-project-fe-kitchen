@@ -1,3 +1,4 @@
+import { AccountManager } from './../../providers/account-manager';
 import { Push } from '@ionic/cloud-angular';
 import { NgRedux } from '@angular-redux/store';
 import IAppState from '../../states/IAppState';
@@ -43,7 +44,8 @@ export class NewOrdersPage {
   private orderMngr: OrderManager,
   private utilities: Utilities,
   private ngRedux: NgRedux<IAppState>,
-  private push:Push) {}
+  private push:Push,
+  private accountMngr: AccountManager) {}
 
 
   /**
@@ -65,7 +67,7 @@ export class NewOrdersPage {
         this.hasOrders = true;
 
 				if(message.title === 'New Order'){
-          this.orderMngr.getNewOrders()
+          this.orderMngr.getNewOrders(this.accountMngr.kitchenId)
             .subscribe(res => {
               this.isLoading = false;
               this.hasInternet = true;
@@ -116,7 +118,7 @@ export class NewOrdersPage {
       type: actionConst.SHOW_TAB
     });
 
-    this.orderMngr.getNewOrders()
+    this.orderMngr.getNewOrders(this.accountMngr.kitchenId)
       .subscribe(res => {
 
         this.isLoading = false;
@@ -219,7 +221,7 @@ export class NewOrdersPage {
               }
 
 
-            this.orderMngr.updateOrderStatus(selectedOrder[0], this.changedStatus, this.rejectReason)
+            this.orderMngr.updateOrderStatus(selectedOrder[0], this.changedStatus, this.rejectReason, this.accountMngr.kitchenId)
               .subscribe(res => {
                 
                 this.newOrders = this.removeOrderFromArray(selectedOrderId, this.newOrders);
@@ -255,7 +257,7 @@ export class NewOrdersPage {
             }
 
 
-            this.orderMngr.updateOrderStatus(selectedOrder[0], this.changedStatus, null)
+            this.orderMngr.updateOrderStatus(selectedOrder[0], this.changedStatus, null, this.accountMngr.kitchenId)
               .subscribe(res => {
                 this.newOrders = this.removeOrderFromArray(selectedOrderId, this.newOrders);
                 let updatedNewOrdersCount = this.newOrders.length;
