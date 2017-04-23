@@ -36,6 +36,7 @@ export class NewOrdersPage {
   rejectReasonAlert: Alert = null;
   rejectReasonInputs: AlertInputOptions[] = null;
   rejectReason: string = null;
+  kitchenId: number;
 
 
   constructor(private navCtrl: NavController, 
@@ -44,8 +45,7 @@ export class NewOrdersPage {
   private orderMngr: OrderManager,
   private utilities: Utilities,
   private ngRedux: NgRedux<IAppState>,
-  private push:Push,
-  private accountMngr: AccountManager) {}
+  private push:Push) {}
 
 
   /**
@@ -57,6 +57,13 @@ export class NewOrdersPage {
     this.isLoading = true;
     this.hasInternet = true;
 
+
+
+		this.ngRedux.select(state => state.currentKitchen)
+			.subscribe(currentKitchen => {
+				this.kitchenId = currentKitchen.kitchenId;
+			});
+
   /**
    * If notification of new order comes, get new order again from BE
    */
@@ -67,7 +74,7 @@ export class NewOrdersPage {
         this.hasOrders = true;
 
 				if(message.title === 'New Order'){
-          this.orderMngr.getNewOrders(this.accountMngr.kitchenId)
+          this.orderMngr.getNewOrders(this.kitchenId)
             .subscribe(res => {
               this.isLoading = false;
               this.hasInternet = true;
@@ -118,7 +125,7 @@ export class NewOrdersPage {
       type: actionConst.SHOW_TAB
     });
 
-    this.orderMngr.getNewOrders(this.accountMngr.kitchenId)
+    this.orderMngr.getNewOrders(this.kitchenId)
       .subscribe(res => {
 
         this.isLoading = false;
@@ -221,7 +228,7 @@ export class NewOrdersPage {
               }
 
 
-            this.orderMngr.updateOrderStatus(selectedOrder[0], this.changedStatus, this.rejectReason, this.accountMngr.kitchenId)
+            this.orderMngr.updateOrderStatus(selectedOrder[0], this.changedStatus, this.rejectReason, this.kitchenId)
               .subscribe(res => {
                 
                 this.newOrders = this.removeOrderFromArray(selectedOrderId, this.newOrders);
@@ -257,7 +264,7 @@ export class NewOrdersPage {
             }
 
 
-            this.orderMngr.updateOrderStatus(selectedOrder[0], this.changedStatus, null, this.accountMngr.kitchenId)
+            this.orderMngr.updateOrderStatus(selectedOrder[0], this.changedStatus, null, this.kitchenId)
               .subscribe(res => {
                 this.newOrders = this.removeOrderFromArray(selectedOrderId, this.newOrders);
                 let updatedNewOrdersCount = this.newOrders.length;
