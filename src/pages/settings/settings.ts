@@ -7,6 +7,7 @@ import IAppState from '../../states/IAppState';
 import actionConst from '../../states/actionsConst';
 import { Component } from '@angular/core';
 import { NavController, NavParams, App, ToastController } from 'ionic-angular';
+import {FeedbackReportPage} from "../feedback-report/feedback-report";
 
 /*
   Generated class for the Settings page.
@@ -66,8 +67,10 @@ export class SettingsPage {
             });
         })
 
+    }
 
-
+    viewMonthlyFeedback(){
+        this.navCtrl.push(FeedbackReportPage);
     }
 
 
